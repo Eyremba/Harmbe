@@ -62,12 +62,12 @@ public class HarmbePassivePathfinder extends Pathfinder {
 			if (!(e instanceof Player))
 				continue;
 			Player p = (Player) e;
-			p.sendMessage("§c<Harmbe>§3 " + harmbeTalk);
+			p.sendMessage("§c<Harambe>§3 " + harmbeTalk);
 		}
 	}
 
 	public void harmbeSpeak(String harmbeTalk) {
-		Bukkit.broadcastMessage("§c<Harmbe>§3 " + harmbeTalk);
+		Bukkit.broadcastMessage("§c<Harambe>§3 " + harmbeTalk);
 	}
 
 	@Override
