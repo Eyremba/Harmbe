@@ -1,0 +1,6 @@
+name: Harmbe
+version: 1.0
+main: com.kirelcodes.harmbe.Harmbe
+depend: [MiniaturePets]
+commands:
+  spawnHarmbe:
