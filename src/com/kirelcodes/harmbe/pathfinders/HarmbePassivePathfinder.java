@@ -119,12 +119,23 @@ public class HarmbePassivePathfinder extends Pathfinder {
 	}
 
 	private boolean searchPlayer() {
-		for (Entity e : mob.getNavigator().getNearbyEntities(40 , 1000 , 40)) {
+		for (Entity e : mob.getNavigator().getNearbyEntities(20 , 100 , 20)) {
 			if (!e.isOnGround())
 				continue;
 			if (!(e instanceof Player))
 				continue;
 			targetPlayer = (Player) e;
+			try{
+			if (!mob.setTargetLocation(targetPlayer.getLocation())) {
+				this.targetPlayer = null;
+				stopPathFinding();
+			} else
+				harmbeSpeakNearBy(targetPlayer.getDisplayName()
+						+ "§3 waitttttttt dont move stay where you are !",
+						40);
+			}catch(Exception exc){
+				exc.printStackTrace();
+			}
 			return true;
 		}
 		return false;
@@ -142,7 +153,7 @@ public class HarmbePassivePathfinder extends Pathfinder {
 	private boolean hasTargetLocation() {
 		if (mob.getTargetLocation() != null) {
 			return mob.getTargetLocation().distanceSquared(
-					targetPlayer.getLocation()) < 4;
+					targetPlayer.getLocation()) < 16;
 		} else
 			return false;
 	}

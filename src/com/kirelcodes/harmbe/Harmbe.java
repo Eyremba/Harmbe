@@ -10,6 +10,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.kirelcodes.harmbe.listener.CoreListener;
+import com.kirelcodes.harmbe.pathfinders.HarmbeAggressivePathfinder;
 import com.kirelcodes.harmbe.pathfinders.HarmbePassivePathfinder;
 import com.kirelcodes.miniaturepets.api.APIUtils;
 import com.kirelcodes.miniaturepets.api.pets.APIMob;
@@ -28,6 +30,7 @@ public class Harmbe extends JavaPlugin {
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
+		new CoreListener(this);
 	}
 
 	private void setupInstance(){
@@ -58,6 +61,8 @@ public class Harmbe extends JavaPlugin {
 				mob.addObject("targetHarmbe", null);
 				mob.setCustomName("Harmbe");
 				mob.getPathManager().addPathfinder(new HarmbePassivePathfinder(mob));
+				mob.getPathManager().addPathfinder(new HarmbeAggressivePathfinder(mob));
+				mob.getNavigator().setRemoveWhenFarAway(true);
 			}
 		});
 		return true;
